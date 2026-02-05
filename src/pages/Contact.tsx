@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Contact = () => 
 <div>
     <h1>Questions? Comments?</h1>
