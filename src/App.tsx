@@ -5,8 +5,9 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Events from "./pages/Events";
-import Discord from "./pages/Discord"; 
+import Discord from "./pages/Discord";
 import "./App.css";
+import devIcon from "/src/images/arrow.png";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -18,17 +19,9 @@ const NAV_LINKS = [
 ];
 
 function App() {
-  const [visibleLinks, setVisibleLinks] = useState(0);
+  const [navOpen, setNavOpen] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    if (visibleLinks < NAV_LINKS.length) {
-      timer = setTimeout(() => setVisibleLinks(visibleLinks + 1), 100);
-    }
-    return () => clearTimeout(timer);
-  }, [visibleLinks]);
 
   useEffect(() => {
     // Scroll to main section when route changes
@@ -42,28 +35,98 @@ function App() {
     }
   }, [location]);
 
+  let heroStyles =
+    "relative " +
+    "w-screen " +
+    "max-w-screen " +
+    "flex " +
+    "flex-col " +
+    "items-center " +
+    "justify-center " +
+    "text-white " +
+    "z-[1] " +
+    "bg-[url('/GameDevBG.png')] " +
+    "bg-cover " +
+    "font-Audiowide "+
+    "md:h-screen ";
+
+  let ulStyles =
+    "flex flex-col justify-center p-0 items-center " +
+    "h-full md:h-auto " +
+    "md:flex-row " +
+    "md:justify-around " +
+    "md:w-full " +
+    "md:bg-transparent ";
+
+  let navStyles =
+    "text-grey-50 " +
+    "text-[1.5em] " +
+    "bg-black " +
+    "list-none " +
+    "fixed top-0 right-full " +
+    "h-[100dvh] max-h-[100dvh] w-80 z-9 " +
+    "flex flex-col justify-center items-center " +
+    "md:bg-transparent " +
+    "md:left-0 " + 
+    "md:w-full " +
+    "md:h-auto " +
+    "md:static " +
+    "md:gap-8 " +
+    "md:list-none " +
+    "md:p-0 md:m-0 md:z-0 ";
+
+  let liStyle =
+    "bg-[rgba(30,30,30,0.7)] " +
+    "px-[1.5em] py-[0.5em] " +
+    "rounded-[8px] " +
+    "shadow-[0_2px_8px_#000a] " +
+    "md:animate-[fade-in_600ms_ease-out_forwards] " +
+    "md:transform md:transition-transform md:duration-300 md:hover:scale-[1.2] " +
+    "md:hover:bg-[#222] md:hover:text-green-500 " +
+    "w-50 mb-8 md:mb-0 " +
+    "md:w-auto ";
+
+  let mainStyle =
+    "min-h-[60vh] " +
+    "bg-[#181818] " +
+    "text-white " +
+    "pt-24 " +
+    "px-8 " +
+    "pb-8 " +
+    "-mt-[5vh] " +
+    "rounded-t-[24px] " +
+    "shadow-[0_-4px_24px_#000a] " +
+    "flex flex-col items-center " +
+    "leading-loose " +
+    "main ";
+
   return (
     <>
-      <div className="hero-header">
-        <h1>
-          <span>Southeast Tech</span>
+      <div className={heroStyles}>
+        <h1 className="text-h1 [text-shadow:0_5px_2px_#000] leading-[1.1] -skew-x-12 mb-[0.8em]">
+          <span className="text-[0.2em] mb-0">Southeast Tech</span>
           <br />
           Game Dev Org
         </h1>
-        <nav>
-          <ul className="hero-nav">
-            {NAV_LINKS.map((link, idx) => (
-              <li key={link.to} className={idx < visibleLinks ? "visible" : ""}>
-                <Link to={link.to} tabIndex={idx < visibleLinks ? 0 : -1}>
+        <nav className={navStyles + ((navOpen) ? "transition-transform duration-600 translate-x-full " : "transition-transform duration-600 translate-x-0 ")}>
+          <img src={devIcon} className={"absolute top-0 left-full h-20 w-20 " + ((navOpen) ? "transition-transform duration-600 scale-x-[-1] " : "transition-transform duration-600 scale-x-[1] ")} onClick={()=>setNavOpen(!navOpen)}></img>
+          <ul className={ulStyles}>
+            {NAV_LINKS.map((link, label) => (
+              <li key={link.to} className={liStyle}>
+                <Link
+                  className="font-medium"
+                  to={link.to}
+                  onClick={() => setNavOpen(false)}
+                >
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
-        <div id="hero-pad"></div>
+        <div id="hero-pad" className="h-[20vh]"></div>
       </div>
-      <div ref={mainRef} className="main-section">
+      <div ref={mainRef} className={mainStyle}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  max-height: 100vh;
   width: 100vw;
   text-align: center;
 }
@@ -12,10 +13,13 @@
   font-style: normal;
 }
 
+/*
+
 .hero-header {
   font-family: "Audiowide", sans-serif;
   position: relative;
   width: 100vw;
+  max-width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -29,68 +33,78 @@
   z-index: 1;
 }
 
-.hero-header h1 {
-  font-size: 4em;
-  margin-bottom: 1em;
-  text-shadow: 0 5px 2px #000;
-  transform: skewX(-10deg);
-}
-
-.hero-header h1 span {
-  font-size: 0.2em;
-}
-
-.hero-nav {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 2;
-}
-
-.hero-nav li {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s, transform 0.6s;
-}
-
-.hero-nav li.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hero-nav li.visible:hover {
-  transform: scale(120%);
-  transition: transform 0.3s;
-}
-
-.hero-nav a {
-  color: #fff;
-  font-size: 1.5em;
-  text-decoration: none;
+.navicon {
+  position: fixed;
+  top: 1.5em;
+  left: 1.5em;
+  z-index: 100;
+  width: 48px;
+  height: 48px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: rgba(30,30,30,0.7);
-  padding: 0.5em 1.5em;
+  border: none;
   border-radius: 8px;
+  cursor: pointer;
   box-shadow: 0 2px 8px #000a;
-  transition: background 0.3s, color 0.3s;
+}
+.navicon-bar {
+  display: block;
+  width: 32px;
+  height: 4px;
+  margin: 5px 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: background 0.3s;
 }
 
-.hero-nav a:hover {
-  background: #222;
-  color: #00ff2f;
+.nav-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 70vw;
+  max-width: 320px;
+  background: rgba(20,20,20,0.97);
+  box-shadow: 2px 0 16px #000a;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 5em;
+}
+.nav-mobile.nav-open {
+  transform: translateX(0);
 }
 
-#hero-pad {
-  height: 30vh;
+@media (max-width: 768px) {
+
+  .navicon {
+    display: flex;
+  }
+  .nav-mobile {
+    display: flex;
+  }
+  .hero-header {
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
-.main-section {
-  min-height: 60vh;
-  background: #181818;
-  color: #fff;
-  padding: 4em 2em 2em 2em;
-  margin-top: -5vh;
-  border-radius: 24px 24px 0 0;
-  box-shadow: 0 -4px 24px #000a;
-}
+        <button
+          className="navicon"
+          aria-label={navOpen ? "Close menu" : "Open menu"}
+          aria-expanded={navOpen}
+          onClick={() => setNavOpen((open) => !open)}
+        >
+          <span className="navicon-bar"></span>
+          <span className="navicon-bar"></span>
+          <span className="navicon-bar"></span>
+        </button>
+*/

@@ -1,3 +1,6 @@
+const ul1 = "list-disc pl-6 space-y-2 m-auto text-left ";
+const ul2 = "list-[circle] pl-10 mt-2 space-y-1 ";
+
 const Events = () => (
   <div>
     <h1>2026 Game Jam</h1>
@@ -19,10 +22,10 @@ const Events = () => (
       to verify and get access to channels
     </p>
     <h3>Rules:</h3>
-    <ul style={{ width: "50%", margin: "auto", textAlign: "left" }}>
+    <ul className={ul1}>
       <li>
         Game content must follow the same content rules as Twitch:
-        <ul>
+        <ul className={ul2}>
           <li>
             <a href="https://safety.twitch.tv/s/article/Community-Guidelines?language=en_US#19SensitiveContent">
               Twitch Content Guidelines
@@ -32,7 +35,7 @@ const Events = () => (
       </li>
       <li>
         Students must also follow STC Policies and Student Conduct:
-        <ul>
+        <ul className={ul2}>
           <li>
             <a href="https://www.southeasttech.edu/consumer-information/stc-policies.php">
               STC Policies and Student Conduct
@@ -42,7 +45,7 @@ const Events = () => (
       </li>
       <li>
         Participants must register using the following sign-up form:
-        <ul>
+        <ul className={ul2}>
           <li>
             <a href="https://forms.office.com/r/qRkdTeTB8F">Sign Up Here</a>
           </li>
@@ -55,7 +58,7 @@ const Events = () => (
       </li>
       <li>
         Games must run on 16 GB of RAM or less, and 2.00GHz processor or lesser.
-        <ul>
+        <ul className={ul2}>
           <li>These are the minimum specs for the school laptops.</li>
           <li>Web hosted games are encouraged, but not required.</li>
         </ul>
