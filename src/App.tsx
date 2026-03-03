@@ -111,7 +111,7 @@ function App() {
         <nav className={navStyles + ((navOpen) ? "transition-transform duration-600 translate-x-full " : "transition-transform duration-600 translate-x-0 ")}>
           <img src={devIcon} className={"absolute top-0 left-full h-20 w-20 " + ((navOpen) ? "transition-transform duration-600 scale-x-[-1] " : "transition-transform duration-600 scale-x-[1] ")} onClick={()=>setNavOpen(!navOpen)}></img>
           <ul className={ulStyles}>
-            {NAV_LINKS.map((link, label) => (
+            {NAV_LINKS.map((link) => (
               <li key={link.to} className={liStyle}>
                 <Link
                   className="font-medium"
